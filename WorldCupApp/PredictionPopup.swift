@@ -56,6 +56,7 @@ struct PredictionPopup: View {
             .background(
                 .ultraThinMaterial
             )
+        //dimiss screen on douple tap
             .onTapGesture(count:2) {
                 isPresenting.toggle()
             }
@@ -93,7 +94,10 @@ extension PredictionPopup{
     
     var button:some View{
         
-        CapsuleButton(title: "PREDICT SCORE",hPadding:25, vPadding:7 ,onPress: {})
+        CapsuleButton(title: "PREDICT SCORE",hPadding:25, vPadding:7 ,onPress: {
+            // TODO: add action when Prediction Button Pressed
+            #warning("Button is NOT implemented")
+        })
             .offset(y:-30)
             .zIndex(.infinity)
     }

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct WinnerScreen: View {
+    
+    // FIXME: this needs to implement LoginViewModel.
+    #warning("No ViewModel Found")
+    
     @State var firstTeamScore = 2
     let secondTeamScore = 3
     
@@ -25,7 +29,11 @@ struct WinnerScreen: View {
                             .font(.title)
                             .fontWeight(.bold)
                         
-                        CapsuleButton(image:"trophy-cup", title: "WINNERS",hPadding: 15,vPadding: 3, onPress: {})
+                        CapsuleButton(image:"trophy", title: "WINNERS",hPadding: 15,vPadding: 3, onPress: {
+                            // TODO: add action when Prediction Button Pressed
+                            #warning("Button is NOT implemented")
+                        })
+                            .foregroundStyle(.white)
                     }
                     .padding()
                     

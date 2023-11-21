@@ -20,7 +20,8 @@ struct HomeScreen: View {
                     
 //            ZStack{
         VStack(spacing:-20){
-                    Image("background")
+            
+                    Image("home-background")
                         .resizable()
                         .scaledToFit()
                         .overlay(.black.opacity(0.6))
@@ -53,8 +54,8 @@ struct HomeScreen: View {
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20.0))
                 }
-        .ignoresSafeArea()
-            .overlay{
+        .ignoresSafeArea(edges: .top)
+        .overlay{
                 if isPredictionPresenting{
                     PredictionPopup(isPresenting: $isPredictionPresenting)
                 }
@@ -75,18 +76,7 @@ extension HomeScreen{
         CardTemplate(headerTitle: "GROUP STAGE", headerCaption:  "Group A - Matchday 1 of 3", spacing: 2){
             
             Spacer()
-            Group{
-                Country(countryName: "PALESTINE", flag: "ps-flag")
-                    .font(.caption2)
-                
-                
-                Text("Vs")
-                    .foregroundStyle(.gray)
-                
-                Country(countryName: "ALGERIA", flag: "ag-flag")
-                    .font(.caption2)
-            }
-
+            matchTeams
 
             // Vertical Line Separator
             Spacer()
@@ -99,23 +89,9 @@ extension HomeScreen{
             
             VStack {
                 
-                // Match Date Time
-                VStack(alignment: .leading){
-                    Text("NOV 20 WED")
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.secondary)
-                        
-                    Text("11:30 AM")
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-                        .fontDesign(.monospaced)
-
-                }
+               matchDateTime
                 
-                
-                // Prediction State View
+                // show Prediction with edit OR Predict Button
                 if isPredicted{
                     
                     // Horizontal Line Seperator
@@ -123,16 +99,10 @@ extension HomeScreen{
                         .fill(.secondary.opacity(0.5))
                         .frame(maxWidth: 90, maxHeight: 2)
                     
-                    
                     predictionScore
                     
-                    
                 } else{
-                    CapsuleButton(
-                        title: "PREDICT NOW",
-                        onPress: {
-                        }
-                    )
+                    predictionButton
                 }
                 
             }
@@ -142,11 +112,41 @@ extension HomeScreen{
         }
     }
     
+    var matchDateTime: some View{
+        VStack(alignment: .leading){
+            Text("NOV 20 WED")
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundStyle(.secondary)
+                
+            Text("11:30 AM")
+                .font(.subheadline)
+                .fontWeight(.bold)
+        }
+        .fontDesign(.monospaced)
+
+    }
+    
+    var matchTeams: some View{
+        Group{
+            Country(countryName: "PALESTINE", flag: "ps-flag")
+                .font(.caption2)
+            
+            
+            Text("Vs")
+                .foregroundStyle(.gray)
+            
+            Country(countryName: "ALGERIA", flag: "ag-flag")
+                .font(.caption2)
+        }
+
+    }
+    
     
     var predictionScore: some View{
         HStack{
             Text("\(team1Score) : \(team2Score)")
-            editButton
+            predictionButton
             
         }
         .fontWeight(.bold)
@@ -154,14 +154,15 @@ extension HomeScreen{
     }
     
     
-    var editButton: some View{
-        Button(action: {}){
-            Image(systemName: "square.and.pencil")
-                .foregroundStyle(.white)
-                .padding(8)
+    var predictionButton: some View{
+        let title = isPredicted ? nil : "PREDICT NOW"
+        let image = isPredicted ? "square.and.pencil" : nil
+        
+        return CapsuleButton(image: image,title: title,hPadding: 10,vPadding: 5){
+            isPredictionPresenting.toggle()
         }
-        .background(Color("buttonColor"))
-        .clipShape(Circle())
+        .foregroundStyle(.white)
+        
     }
     
     
