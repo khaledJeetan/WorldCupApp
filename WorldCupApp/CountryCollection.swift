@@ -12,6 +12,8 @@ struct CountryCollection: View {
     
     // FIXME: this needs to implement LoginViewModel.
     #warning("No ViewModel Found")
+    
+    
     let columns:[GridItem] = [
         GridItem(.flexible(), spacing: nil, alignment: nil),
         GridItem(.flexible(), spacing: nil, alignment: nil),

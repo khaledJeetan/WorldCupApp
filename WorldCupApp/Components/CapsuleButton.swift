@@ -38,7 +38,7 @@ struct CapsuleButton: View {
         }
         .background(
             Capsule()
-                .fill(Color("main-color"))
+                .fill(.main)
         )    }
 }
 

@@ -28,7 +28,7 @@ struct SigninScreen: View {
                     .fontWeight(.bold)
                     .padding(30)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(Color("main-color"))
+                    .foregroundStyle(.main)
                 
                 loginForm
                     .font(.subheadline)
@@ -83,8 +83,8 @@ struct SigninScreen: View {
                 
                 CustomTextField(
                     text: $username,
-                    label: "User Name",
-                    placeholder: "Enter Username"
+                    label: "Password",
+                    placeholder: "Enter Password"
                 )
                 .padding(.bottom)
                 
@@ -105,7 +105,7 @@ struct SigninScreen: View {
                     .font(.subheadline)
                     .fontWeight(.bold)
                 NavigationLink("Register", destination: SignupScreen())
-                    .foregroundStyle(Color("main-color"))
+                    .foregroundStyle(.main)
             }
         }
         

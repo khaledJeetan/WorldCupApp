@@ -9,11 +9,16 @@ import SwiftUI
 
 struct HomeScreen: View {
     
+    
+    @StateObject var model:HomeScreenViewModel = HomeScreenViewModel()
+    
     @State var team1Score:Int = 0
     @State var team2Score:Int = 0
     
     @State var isPredicted:Bool = true
     @State var isPredictionPresenting = false
+    
+
     
     var date:Date = Date.now
     var body: some View {
@@ -21,15 +26,15 @@ struct HomeScreen: View {
 //            ZStack{
         VStack(spacing:-20){
             
-                    Image("home-background")
+                    Image(.homeBackground)
                         .resizable()
                         .scaledToFit()
                         .overlay(.black.opacity(0.6))
                         .overlay(alignment:.bottom){
                             Country(
                                 description:"YOU ARE WITH THE TEAM",
-                                countryName: "PALESTINE",
-                                flag: "ps-flag"
+                                countryName: model.userCountry.uppercased(),
+                                flag: model.userCountryFlag
                             )
                             .font(.subheadline)
                             .foregroundStyle(.white)
@@ -39,7 +44,9 @@ struct HomeScreen: View {
                 
                     ScrollView{
                         
-                        ForEach(0..<10){ index in
+                        
+                        ForEach(model.getMatches()){ match in
+                            
                             card
                                 .shadow(
                                     color: .black.opacity(0.09),
@@ -128,7 +135,7 @@ extension HomeScreen{
     }
     
     var matchTeams: some View{
-        Group{
+        Group{ // MARK: changed from Group
             Country(countryName: "PALESTINE", flag: "ps-flag")
                 .font(.caption2)
             

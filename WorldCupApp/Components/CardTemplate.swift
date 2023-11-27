@@ -52,7 +52,7 @@ extension CardTemplate{
         HStack{
             Text(headerTitle)
                 .font(.headline)
-                .foregroundStyle(Color("main-color"))
+                .foregroundStyle(.main)
                 .fontWeight(.heavy)
             Spacer()
             Text(headerCaption)
@@ -61,7 +61,7 @@ extension CardTemplate{
                 .fontWeight(.heavy)
         }
         .padding()
-        .background(Color("secondary-color"))
+        .background(.backgroundSecondary)
     }
     
 }

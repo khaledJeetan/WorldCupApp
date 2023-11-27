@@ -74,6 +74,8 @@ struct PredictionPopup: View {
 // MARK: COMPONENTS
 extension PredictionPopup{
     
+    
+    
     var selector: some View{
         get{
             Picker("Selector", selection: $team1Predicate){

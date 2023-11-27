@@ -26,7 +26,7 @@ struct ContentView: View {
                             Text("Home")
                         }
                     
-                    WinnerScreen()
+                    TournamentScreen()
                         .tabItem {
                             Image(systemName: "trophy")
                             Text("Matches")
@@ -38,7 +38,7 @@ struct ContentView: View {
                             Text("Winners")
                         }
                     
-                    WinnerScreen()
+                    TeamProfileView()
                         .tabItem {
                             Image(systemName: "list.star")
                             Text("Toppers")
@@ -52,7 +52,7 @@ struct ContentView: View {
                         }
                     
                 }
-                .accentColor(.red)
+                .accentColor(.main)
             }
         }
     }
